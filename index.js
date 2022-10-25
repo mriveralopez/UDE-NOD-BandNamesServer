@@ -16,8 +16,13 @@ io.on('connection', client => {
     client.on('disconnect', () => {
         console.log('Cliente desconectado');
     });
-}
-);
+
+    client.on('mensaje', (payload) => {
+        console.log('Mensaje!!!', payload)
+
+        io.emit('mensaje', { admin: 'Nuevo mensaje' });
+    });
+});
 
 // Path público
 const publicPath = path.resolve(__dirname, 'public');
